@@ -7,7 +7,9 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
-
+plugins {
+  id 'jacoco'
+}
 apply plugin: 'kotlin'
 
 repositories {
@@ -20,4 +22,13 @@ dependencies {
     compile "com.fasterxml.jackson.core:jackson-annotations:2.8.7"
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.8.7"
     testCompile "io.kotlintest:kotlintest:2.0.3"
+}
+
+jacocoTestReport {
+  reports {
+    xml.enabled true
+    xml.destination "${buildDir}/reports/jacoco/report.xml"
+    html.enabled true
+    html.destination "${buildDir}/reports/jacoco/report.html"
+  }
 }
